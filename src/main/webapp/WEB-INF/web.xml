@@ -4,7 +4,17 @@
 
 <web-app>
   <welcome-file-list>
-    <welcome-file>/index.html</welcome-file>
+    <welcome-file>/index.jsp</welcome-file>
   </welcome-file-list>
-  <display-name>Archetype Created Web Application</display-name>
+
+  <servlet>
+    <servlet-name>testServlet</servlet-name>
+    <servlet-class>com.Controller.testServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>testServlet</servlet-name>
+    <url-pattern>/testServlet</url-pattern>
+  </servlet-mapping>
+
 </web-app>
