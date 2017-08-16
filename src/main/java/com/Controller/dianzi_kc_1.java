@@ -29,7 +29,7 @@ public class dianzi_kc_1 extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
         response.setCharacterEncoding("utf-8");
-
+        response.setHeader("Access-Control-Allow-Origin", "http://astsapce.org>");
         String responseMsg = "<p>" + message + "</p>";
         // 实际的逻辑是在这里
         PrintWriter out = response.getWriter();
@@ -98,7 +98,8 @@ public class dianzi_kc_1 extends HttpServlet {
             if(!bHaveData)
             {
                 String strClassName = "Arduino 入门";
-                String insertSql = String.format("insert into kc_bm (userName,phoneNum,ageNum,className) VALUES('%s','%s','%s','%s');",request.getParameter("name"),request.getParameter("phoneNum"),request.getParameter("ageNum"),strClassName);
+                System.out.printf("%s\r\n,%s\r\n",request.getParameter("name").toString(),request.getParameter("phoneNum")).toString();
+                String insertSql = String.format("insert into kc_bm (userName,phoneNum,ageNum,className) VALUES('%s','%s','%s','%s');",request.getParameter("name").toString(),request.getParameter("phoneNum").toString(),request.getParameter("ageNum").toString(),strClassName.toString());
                 out.println(responseMsg + " <div class=\"modal-footer\">\n" +
                         "                        <button type=\"button\" id=\"submit_dianzi\" data-dismiss=\"modal\" class=\"btn btn-primary\">完成</button>\n" +
                         "                    </div>");

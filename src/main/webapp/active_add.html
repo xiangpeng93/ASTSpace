@@ -138,7 +138,7 @@
         else
         {
             var param = $("#form_dianzi").serialize();
-            var submitUrl = "http://127.0.0.1:8080/dianzi_kc_1?"+param;
+            var submitUrl = "http://astspace.org/dianzi_kc_1?"+param;
             htmlobj=$.ajax({url:submitUrl,async:false});
             $("#form_data").html(htmlobj.responseText);
         }
