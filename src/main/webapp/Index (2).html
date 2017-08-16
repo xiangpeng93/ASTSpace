@@ -1,0 +1,204 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+	
+	
+  <body style="padding-top: 70px;">
+  <!-- 标题栏 -->
+	  <nav class="navbar navbar-default navbar-fixed-top navbar-static-top navbar-inverse navbar-inner ">
+	  <a class="navbar-brand" href="#">
+        <img alt="Brand" src="img/logo.png">
+      </a>
+	  <div class="container-fluid">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+		  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="sr-only">Toggle navigation</span>
+		  </button>
+		  <a class="navbar-brand" href="#" >ASTSpace</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		  <ul class="nav navbar-nav">
+			<li class="active">
+			<a href="#">空间简介</a>
+			</li>
+			<li>
+			<a href="#" >活动展示</a>
+			</li>
+			<li class="dropdown">
+			  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">活动信息 <span class="caret"></span></a>
+			  <ul class="dropdown-menu">
+				<li><a href="#">课程报名</a></li>
+				<li role="separator" class="divider"></li>
+				<li><a href="#">作品展示</a></li>
+				<li role="separator" class="divider"></li>
+				<li><a href="#">活动报名</a></li>
+			  </ul>
+			</li>
+		  </ul>
+		  
+		</div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+
+	<div class="jumbotron" >
+	<div class="container" >
+		<div class="page-header">
+
+		<!-- Button trigger modal -->
+		<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+		join us
+		</button>
+	<p></p>
+
+	</div>
+
+	</div>
+
+  	<br>
+	
+	<div id="myCarousel" class="carousel slide">
+                <ol class="carousel-indicators">
+                  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                  <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+                  <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+                </ol>
+                <div class="carousel-inner">
+                  <div class="item active">
+                    <img src="img/bio-screen.jpg" alt="">
+                    <div class="carousel-caption">
+						<h1>生物活动</h1>
+						<p>DNA提取，小鸡孵化，酵素制作，探索生命起源...</p>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <img src="img/program-screen.jpg" alt="">
+                    <div class="carousel-caption">
+						<h1>电子活动</h1>
+						<p>编程，Arduino，无人机，探测电子科技的本质.</p>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <img src="img/other-screen.jpg" alt="">
+                    <div class="carousel-caption">
+						<h1>其他活动</h1>
+						<p>小车制作？网络直播？无人机飞行？统统都有.</p>
+                    </div>
+                  </div>
+                </div>
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                  <span class="control">‹</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                  <span class="control">›</span>
+                </a>
+              </div>
+  <br>
+	<div class="row">
+	  <div class="col-sm-6 col-md-4">
+		<div class="thumbnail">
+		  <img src="img/logo.jpg" alt="...">
+		  <div class="caption">
+			<h3>Thumbnail label</h3>
+			<p>...</p>
+			<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+		  </div>
+		</div>
+	  </div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title" id="myModalLabel">活动报名</h4>
+		  </div>
+		  <div class="modal-body" id="baomingpage">
+			<form class="form-horizontal" role="form" id="baoming" method="get">
+			<div class="form-group">
+			<label class="col-sm-2 control-label">名字</label>
+			<div class="col-sm-10">
+			<input type="text" class="form-control" name="name"
+			placeholder="请输入名字">
+			</div>
+			</div>
+			<div class="form-group">
+			<label class="col-sm-2 control-label">联系电话</label>
+			<div class="col-sm-10">
+			<input type="text" class="form-control" name="phoneNum"
+			placeholder="请输入手机号码">
+			</div>
+			</div>
+			
+			<div class="form-group">
+			<label class="col-sm-2 control-label">年龄</label>
+			<div class="col-sm-10">
+			<input type="text" class="form-control" name="age"
+			placeholder="请输入年龄">
+			</div>
+			</div>
+			
+			<div class="form-group">
+			<label class="col-sm-2 control-label">年级</label>
+			<div class="col-sm-10">
+			<input type="text" class="form-control" name="schoolAge"
+			placeholder="请输入学龄">
+			</div>
+			</div>
+			
+			<div class="form-group modal-footer">
+			<div class="col-sm-offset-2 col-sm-10">
+			<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+			<button id="submitBtn" type="button" class="btn btn-default">登录</button>
+			</div>
+			</div>
+			</form>
+		  </div>
+		  <!-- <div class="modal-footer"> -->
+			<!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+			<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+		  <!-- </div> -->
+		</div>
+	  </div>
+	</div>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+      //ajax提交form表单的方式
+      $('#submitBtn').click(function() {
+          var AjaxURL= "http://127.0.0.1:8088/testServlet";
+          alert($('#baoming').serialize());
+          var url = AjaxURL + "?" + $('#baoming').serialize();
+          alert(url);
+          htmlobj=$.ajax({url:url,async:false});
+          $("#baomingpage").html(htmlobj.responseText);
+      });
+  </script>
+
+  </body>
+</html>
