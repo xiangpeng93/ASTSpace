@@ -5,13 +5,42 @@
 <web-app>
 
   <servlet>
-    <servlet-name>dianzi_kc_1</servlet-name>
-    <servlet-class>com.Controller.dianzi_kc_1</servlet-class>
+    <servlet-name>kc_bm</servlet-name>
+    <servlet-class>com.Controller.kc_bm</servlet-class>
   </servlet>
 
   <servlet-mapping>
-    <servlet-name>dianzi_kc_1</servlet-name>
-    <url-pattern>/dianzi_kc_1</url-pattern>
+    <servlet-name>kc_bm</servlet-name>
+    <url-pattern>/kc_bm</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ArduinoBase</servlet-name>
+    <servlet-class>com.Model.ArduinoBase</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ArduinoBase</servlet-name>
+    <url-pattern>/ArduinoBase</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ScratchBase</servlet-name>
+    <servlet-class>com.Model.ScratchBase</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ScratchBase</servlet-name>
+    <url-pattern>/ScratchBase</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>BIOBase</servlet-name>
+    <servlet-class>com.Model.BIOBase</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>BIOBase</servlet-name>
+    <url-pattern>/BIOBase</url-pattern>
   </servlet-mapping>
 
   <welcome-file-list>

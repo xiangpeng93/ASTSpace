@@ -16,7 +16,7 @@
     <![endif]-->
     <title>ASTSPACE官方网站</title>
 </head>
-<body style="padding-top: 70px">
+<body style="padding-top: 70px" onload="loadPage()">
 
 <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
     <div class="container-fluid">
@@ -54,24 +54,10 @@
     </div>
 </nav>
 
-<div class="row" id="thumbnail1" >
-    <div class="container">
+<div class="row" id="thumbnail1"  style="padding-left: 0px;padding-right: 0px; position: absolute; ">
+    <div class="container" id="showActiveDiv">
 
-        <div class="thumbnail">
-            <img src="img/arduino_logo.jpg" alt="arduino_logo">
-            <div class="caption">
-                <a herf="#">
-                <h3>Arduino编程系列课程之入门篇</h3>
-                </a>
-                <p>本次课程通过一些贴近生活实际的小制作,带来更有趣的课程...</p>
-                <p>
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                        报名入口
-                    </button>
-                </p>
-            </div>
-        </div>
+
     </div>
 
 </div>
@@ -122,6 +108,13 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.min.js"></script>
 <script>
+    function  loadPage() {
+        var url = window.location.search;
+        var param = url.substring(url.lastIndexOf('=')+1, url.length);
+        var submitUrl = "http://astspace.org/"+param;
+        htmlobj=$.ajax({url:submitUrl,async:false});
+        $("#showActiveDiv").html(htmlobj.responseText);
+    }
     $("#submit_dianzi").click(function(){
         if($("#name").val() == "" )
         {
@@ -137,10 +130,14 @@
         }
         else
         {
-            var param = $("#form_dianzi").serialize();
-            var submitUrl = "http://astspace.org/dianzi_kc_1?"+param;
-            htmlobj=$.ajax({url:submitUrl,async:false});
-            $("#form_data").html(htmlobj.responseText);
+            var classNameVal = $("#className").attr("name");;
+            if(classNameVal !== "")
+            {
+                var param = $("#form_dianzi").serialize();
+                var submitUrl = "http://astspace.org/kc_bm?"+param+"?className="+classNameVal;
+                htmlobj=$.ajax({url:submitUrl,async:false});
+                $("#form_data").html(htmlobj.responseText);
+            }
         }
 
     });

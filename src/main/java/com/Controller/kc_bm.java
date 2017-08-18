@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
 
-public class dianzi_kc_1 extends HttpServlet {
+public class kc_bm extends HttpServlet {
 
     private String message;
     private static final long serialVersionUID = 1L;
@@ -97,7 +97,7 @@ public class dianzi_kc_1 extends HttpServlet {
             }
             if(!bHaveData)
             {
-                String strClassName = "Arduino 入门";
+                String strClassName = request.getParameter("className").toString();
                 System.out.printf("%s\r\n,%s\r\n",request.getParameter("name").toString(),request.getParameter("phoneNum")).toString();
                 String insertSql = String.format("insert into kc_bm (userName,phoneNum,ageNum,className) VALUES('%s','%s','%s','%s');",request.getParameter("name").toString(),request.getParameter("phoneNum").toString(),request.getParameter("ageNum").toString(),strClassName.toString());
                 out.println(responseMsg + " <div class=\"modal-footer\">\n" +
