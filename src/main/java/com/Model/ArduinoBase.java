@@ -21,6 +21,8 @@ public class ArduinoBase extends HttpServlet  {
                 "                <h3>Arduino编程系列课程之入门篇</h3>\n" +
                 "                </a>\n" +
                 "                <p><ul>\n" +
+
+                "<li>开课时间暂定为9月10日。</li>\n" +
                 "           <li>预备课：了解软件Scratch以及智能硬件Arduino；熟悉电子元器件和基础电路，制作云朵灯。</li>\n" +
                 "           <li>点亮LED：从点亮一盏小灯开始，学习数字量并实现延迟灯，过渡到控制多盏小灯，完成联机打地鼠。</li>\n" +
                 "<li>玩转LED：引入模拟量，实现呼吸灯，配合电位器学习映射，制作可调控台灯。</li>\n" +

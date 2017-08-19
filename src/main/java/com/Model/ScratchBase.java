@@ -18,9 +18,10 @@ public class ScratchBase  extends  HttpServlet{
                 "            <img src=\"img/ScratchBase.png\" alt=\"logo\">\n" +
                 "            <div class=\"caption\">\n" +
                 "                <a herf=\"#\">\n" +
-                "                <h3>【魔抓传奇】第一期：猫咪寻宝之旅</h3>\n" +
+                "                <h3>魔抓传奇-猫咪寻宝之旅</h3>\n" +
                 "                </a>\n" +
                 "                <p><ul>\n" +
+                "<li>开课时间暂定为9月16日。</li>\n" +
                 "<li>初遇公主：Scratch入门，了解编程环境、积木块的概念和创建程序的方法</li>\n" +
                 "<li>保卫西瓜：数字与逻辑运算、随机数、侦测、添加声音</li>\n" +
                 "<li>搜集钱袋：动作与画笔模块的积木、图章使用绘制几何图形、计时器</li>\n" +

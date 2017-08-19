@@ -3,6 +3,8 @@ import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class kc_bm extends HttpServlet {
 
@@ -48,7 +50,7 @@ public class kc_bm extends HttpServlet {
             // 执行 SQL 查询
             stmt = conn.createStatement();
             String querySql;
-            querySql = String.format("SELECT id, userName,ageNum, phoneNum,className FROM kc_bm where username='%s' and phoneNum='%s';",request.getParameter("name"),request.getParameter("phoneNum"));
+            querySql = String.format("SELECT id, userName,ageNum, phoneNum,className FROM kc_bm where username='%s' and phoneNum='%s' and className='%s';",request.getParameter("name"),request.getParameter("phoneNum"),request.getParameter("className"));
             System.out.println(querySql);
 
             ResultSet rs = stmt.executeQuery(querySql);
@@ -97,9 +99,13 @@ public class kc_bm extends HttpServlet {
             }
             if(!bHaveData)
             {
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+                String dateNow = df.format(new Date());
+                System.out.println(dateNow);// new Date()为获取当前系统时间
+
                 String strClassName = request.getParameter("className").toString();
                 System.out.printf("%s\r\n,%s\r\n",request.getParameter("name").toString(),request.getParameter("phoneNum")).toString();
-                String insertSql = String.format("insert into kc_bm (userName,phoneNum,ageNum,className) VALUES('%s','%s','%s','%s');",request.getParameter("name").toString(),request.getParameter("phoneNum").toString(),request.getParameter("ageNum").toString(),strClassName.toString());
+                String insertSql = String.format("insert into kc_bm (userName,phoneNum,ageNum,className,time_bm) VALUES('%s','%s','%s','%s','%s');",request.getParameter("name").toString(),request.getParameter("phoneNum").toString(),request.getParameter("ageNum").toString(),strClassName.toString(),dateNow.toString());
                 out.println(responseMsg + " <div class=\"modal-footer\">\n" +
                         "                        <button type=\"button\" id=\"submit_dianzi\" data-dismiss=\"modal\" class=\"btn btn-primary\">完成</button>\n" +
                         "                    </div>");

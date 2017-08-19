@@ -18,9 +18,11 @@ public class BIOBase extends HttpServlet {
                 "            <img src=\"img/bio_base1.jpg\" alt=\"arduino_logo\">\n" +
                 "            <div class=\"caption\">\n" +
                 "                <a herf=\"#\">\n" +
-                "                <h3>【生物黑客】从0开始，孵化小鸡</h3>\n" +
+                "                <h3>从0开始，孵化小鸡</h3>\n" +
                 "                </a>\n" +
                 "                <p><ul>\n" +
+
+                "<li>开课时间暂定为9月10日。</li>\n" +
                 "           <li>观察鸡蛋孵化过程中胚胎发育变化。</li>\n" +
                 "<li>记录实验数据。</li>\n" +
                 "<li>小鸡孵化出来后，提取DNA，复制性别基因，鉴定小鸡性别。</li>\n" +
