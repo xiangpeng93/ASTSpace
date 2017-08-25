@@ -111,7 +111,7 @@
     function  loadPage() {
         var url = window.location.search;
         var param = url.substring(url.lastIndexOf('=')+1, url.length);
-        var submitUrl = "http://localhost:8088/"+param;
+        var submitUrl = "http://astspace.org/"+param;
         htmlobj=$.ajax({url:submitUrl,async:false});
         $("#showActiveDiv").html(htmlobj.responseText);
     }
@@ -134,7 +134,7 @@
             if(classNameVal !== "")
             {
                 var param = $("#form_dianzi").serialize();
-                var submitUrl = "http://localhost:8088/kc_bm?"+param+"&className="+classNameVal;
+                var submitUrl = "http://astspace.org/kc_bm?"+param+"&className="+classNameVal;
                 Console.write(submitUrl);
                 htmlobj=$.ajax({url:submitUrl,async:false});
                 $("#form_data").html(htmlobj.responseText);

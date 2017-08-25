@@ -29,6 +29,7 @@ public class kc_bm extends HttpServlet {
             throws ServletException, IOException
     {
         request.setCharacterEncoding("utf-8");
+        response.setHeader("Access-Control-Allow-Origin", "http://ast-space.b0.upaiyun.com");
         response.setContentType("text/html;charset=utf-8");
         response.setCharacterEncoding("utf-8");
         response.setHeader("Access-Control-Allow-Origin", "http://astsapce.org>");
