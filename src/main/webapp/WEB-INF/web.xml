@@ -53,6 +53,16 @@
     <url-pattern>/searchClassMsg</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>uploadPic</servlet-name>
+    <servlet-class>com.Model.uploadPic</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>uploadPic</servlet-name>
+    <url-pattern>/uploadPic</url-pattern>
+  </servlet-mapping>
+
   <welcome-file-list>
     <welcome-file>/index.html</welcome-file>
   </welcome-file-list>
