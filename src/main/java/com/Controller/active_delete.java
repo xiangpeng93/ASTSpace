@@ -1,23 +1,17 @@
 package com.Controller;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 
 /**
  * Created by xiangpeng on 2017/9/9.
  */
 
-class active_delete extends HttpServlet {
+public class active_delete extends HttpServlet {
     // JDBC 驱动名及数据库 URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     static final String DB_URL = "jdbc:mysql://localhost:3306/astspace";

@@ -11,7 +11,7 @@
     <link href="css/fileinput.min.css" rel="stylesheet" type="text/css" />
     <title>活动管理</title>
 </head>
-<body style="padding-top: 70px" >
+<body style="padding-top: 70px" onload="loadPage()" >
 
 <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
     <div class="container-fluid">
@@ -98,21 +98,8 @@
                                 </th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <tr>
-                                <td>
-                                    1
-                                </td>
-                                <td>
-                                    TB - Monthly
-                                </td>
-                                <td>
-                                    01/04/2012
-                                </td>
-                                <td>
-                                    Default
-                                </td>
-                            </tr>
+                            <tbody id="active_info_body">
+
                             <tr class="success">
                                 <td>
                                     1
@@ -126,49 +113,20 @@
                                 <td>
                                     Approved
                                 </td>
-                            </tr>
-                            <tr class="error">
                                 <td>
-                                    2
+                                    Approved
                                 </td>
                                 <td>
-                                    TB - Monthly
+                                    Approved
                                 </td>
                                 <td>
-                                    02/04/2012
+                                    Approved
                                 </td>
                                 <td>
-                                    Declined
+                                    Approved
                                 </td>
                             </tr>
-                            <tr class="warning">
-                                <td>
-                                    3
-                                </td>
-                                <td>
-                                    TB - Monthly
-                                </td>
-                                <td>
-                                    03/04/2012
-                                </td>
-                                <td>
-                                    Pending
-                                </td>
-                            </tr>
-                            <tr class="info">
-                                <td>
-                                    4
-                                </td>
-                                <td>
-                                    TB - Monthly
-                                </td>
-                                <td>
-                                    04/04/2012
-                                </td>
-                                <td>
-                                    Call in to confirm
-                                </td>
-                            </tr>
+
                             </tbody>
                         </table>
                     </div>
@@ -326,6 +284,13 @@
     });
     function  test() {
         window.location.reload();
+    }
+    
+    function  loadPage() {
+        var submitUrl = "http://localhost:8080/active_query";
+        console.log(submitUrl);
+        htmlobj=$.ajax({url:submitUrl,async:false});
+        $("#active_info_body").html(htmlobj.responseText);
     }
 
 </script>

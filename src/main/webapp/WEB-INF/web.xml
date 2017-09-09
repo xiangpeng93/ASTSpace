@@ -63,6 +63,35 @@
     <url-pattern>/uploadPic</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>active_add</servlet-name>
+    <servlet-class>com.Controller.active_add</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>active_add</servlet-name>
+    <url-pattern>/active_add</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>active_query</servlet-name>
+    <servlet-class>com.Controller.active_query</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>active_query</servlet-name>
+    <url-pattern>/active_query</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>active_delete</servlet-name>
+    <servlet-class>com.Controller.active_delete</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>active_delete</servlet-name>
+    <url-pattern>/active_delete</url-pattern>
+  </servlet-mapping>
+
   <welcome-file-list>
     <welcome-file>/index.html</welcome-file>
   </welcome-file-list>

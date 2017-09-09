@@ -44,19 +44,20 @@ public class active_add extends HttpServlet {
 
             String insertSql;
             insertSql = String.format(
-                    "insert into active_info (\n" +
-                    "active_name,active_cost,\n" +
-                    "active_time,active_msg,\n" +
-                    "active_teacher,active_pic,\n" +
-                    "active_modify_time\n" +
-                    ") values(\n" +
-                    "'%s',\n" +
-                    "'%s',\n" +
-                    "'%s',\n" +
-                    "'%s',\n" +
-                    "'%s',\n" +
-                    "'%s',\n" +
-                    "'%s'\n" +
+                            "insert into active_info (\n" +
+                            "active_name,active_cost,\n" +
+                            "active_time,active_msg,\n" +
+                            "active_teacher,active_pic,\n" +
+                            "active_modify_time\n" +
+                            ") values(\n" +
+                            "'%s',\n" +
+                            "'%s',\n" +
+                            "'%s',\n" +
+                            "'%s',\n" +
+                            "'%s',\n" +
+                            "'%s',\n" +
+                            "'%s'\n" +
+                            "'%s'\n" +
                     ");",
                     request.getParameter("active_name"),
                     request.getParameter("active_cost"),
@@ -77,6 +78,23 @@ public class active_add extends HttpServlet {
                         "                        <button type=\"button\" id=\"submit_dianzi\" data-dismiss=\"modal\" class=\"btn btn-primary\"  onclick=\"test()\">完成</button>\n" +
                         "                    </div>");
 
+            }
+
+            String querySql;
+            querySql = String.format(
+                    "select id from active_info where active_info='%s' and active_modify_time='%s';",request.getParameter("active_name"),dateNow.toString());
+
+            System.out.println(querySql);
+            //执行并得到结果
+            ResultSet rs = stmt.executeQuery(querySql);
+            while (rs.next()) {
+               int id = rs.getInt("id");
+               String update_request_url = String.format("update active_info set active_request_rul='%s' where id=%d","http://astspace.org/active_show?id="+id,id);
+               System.out.println(update_request_url);
+               stmt.executeUpdate(update_request_url);
+                if(result != 0) {
+                    System.out.println("更新数据成功");
+                }
             }
             stmt.close();
             conn.close();
