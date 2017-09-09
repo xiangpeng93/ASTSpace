@@ -1,0 +1,36 @@
+create table active_info(
+id int not null auto_increment,
+active_name varchar(255),
+active_cost varchar(512),
+active_time varchar(512),
+active_msg varchar(2048),
+active_teacher varchar(512),
+active_pic varchar(255),
+active_modify_time varchar(255),
+recv1 varchar(1024),
+recv2 varchar(1024),
+primary key(id)
+);
+
+insert into active_info (
+active_name,active_cost,
+active_time,active_msg,
+active_teacher,active_pic,
+active_modify_time
+) values(
+'test',
+'test',
+'test',
+'test',
+'test',
+'test',
+'test'
+);
+
+delete from active_info where active_name='%s' 
+and active_cost='%s' 
+and active_modify_time='%s' 
+and active_msg='%s' 
+and active_teacher='%s' 
+and active_pic='%s';
+

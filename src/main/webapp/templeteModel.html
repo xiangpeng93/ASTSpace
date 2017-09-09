@@ -9,7 +9,7 @@
     <link type="text/css"  href="css/bootstrap.min.css" rel="stylesheet">
 
     <link href="css/fileinput.min.css" rel="stylesheet" type="text/css" />
-    <title>ASTSPACE官方网站</title>
+    <title>活动管理</title>
 </head>
 <body style="padding-top: 70px" >
 
@@ -54,7 +54,7 @@
         <div class="row-fluid">
             <div class="span12">
                 <h3 class="text-center">
-                    课程管理系统
+                    活动管理系统
                 </h3>
                 <div class="row-fluid">
                     <div class="span12">
@@ -66,7 +66,7 @@
                                 </form>
                             </div>
                             <div class="col-sm-6">
-                                <button class="btn btn-inverse pull-right" data-toggle="modal" data-target="#addClassModle" style="margin-right: 50px;" type="button">添加课程</button>
+                                <button class="btn btn-inverse pull-right" data-toggle="modal" data-target="#addClassModle" style="margin-right: 50px;" type="button" >添加课程</button>
                             </div>
                         </div>
                         <table class="table">
@@ -76,10 +76,22 @@
                                     课程名称
                                 </th>
                                 <th>
-                                    上课时间
+                                    收费信息
+                                </th>
+                                <th>
+                                    活动时间
                                 </th>
                                 <th>
                                     课程介绍
+                                </th>
+                                <th>
+                                    活动老师
+                                </th>
+                                <th>
+                                    活动图片
+                                </th>
+                                <th>
+                                    报名链接
                                 </th>
                                 <th>
                                     报名人数
@@ -174,37 +186,59 @@
                     &times;
                 </button>
                 <h4 class="modal-title" id="myModalLabel">
-                    请输入课程信息
+                    请输入活动信息
                 </h4>
             </div>
-            <div class="modal-body">
-                <form class="bs-example bs-example-form " role="form">
-                    <div class="input-group">
-                        <span class="input-group-addon">课程名称：</span>
-                        <input type="text" class="form-control" placeholder="请输入课程名称">
-                    </div>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon">开课时间：</span>
-                        <input type="text" class="form-control" placeholder="请输入开课时间">
-                    </div>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon">课程介绍：</span>
-                        <input type="text" class="form-control text-justify" placeholder="请输入课程简短介绍"/>
-                    </div>
-                    <br>
-                    <label class="control-label">选择课程图片:</label>
-                    <input id="fileInputId" name="uploadTest" type="file" multiple class="file-loading">
-                </form>
+            <div id="model_info">
+                <div class="modal-body" >
+                    <form class="bs-example bs-example-form " id="classInfo" role="form">
+                        <div class="input-group">
+                            <span class="input-group-addon">活动名称：</span>
+                            <input name="active_name" type="text" class="form-control" placeholder="请输入课程名称">
+                        </div>
+                        <br>
+
+                        <div class="input-group">
+                            <span class="input-group-addon">收费信息：</span>
+                            <input name="active_cost" type="text" class="form-control" placeholder="请输入收费信息">
+                        </div>
+                        <br>
+
+                        <div class="input-group">
+                            <span class="input-group-addon">开课时间：</span>
+                            <input name="active_time" type="text" class="form-control" placeholder="请输入开课时间">
+                        </div>
+                        <br>
+
+                        <div class="input-group">
+                            <span class="input-group-addon">课程介绍：</span>
+                            <input name="active_msg" type="text" class="form-control text-justify" placeholder="请输入课程简短介绍"/>
+                        </div>
+                        <br>
+
+                        <div class="input-group">
+                            <span class="input-group-addon">授课老师：</span>
+                            <input name="active_teacher" type="text" class="form-control text-justify" placeholder="请输入授课老师"/>
+                        </div>
+                        <br>
+
+                        <label class="control-label">选择课程图片:</label>
+                        <input id="fileInputId" name="uploadTest" type="file" multiple class="file-loading">
+
+                        <input type="text" id="picUrlPath" name="active_pic" value="none" style="display: none"/>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal" class="close">关闭
+                            </button>
+                            <button type="button" id="addActiveBtn" class="btn btn-primary">
+                                提交课程
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                </button>
-                <button type="button" class="btn btn-primary">
-                    提交课程
-                </button>
-            </div>
+
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
@@ -232,16 +266,68 @@
 <script>
     $(document).on('ready', function() {
         $("#fileInputId").fileinput({
-            showUpload: true,
-            maxFileCount: 10,
+            uploadAsync: false, //默认异步上传
+            showUpload: true, //是否显示上传按钮,跟随文本框的那个
+            showRemove : false, //显示移除按钮,跟随文本框的那个
+            showCaption: true,//是否显示标题,就是那个文本框
+            showPreview : true, //是否显示预览,不写默认为true
+            dropZoneEnabled: false,//是否显示拖拽区域，默认不写为true，但是会占用很大区域
+            maxFileCount: 1, //表示允许同时上传的最大文件个数
+           // validateInitialCount:true,
             mainClass: "input-group-lg",
             language: 'zh', //设置语言
             allowedPreviewTypes: ['image'],
             allowedFileTypes: ['image'],
-            allowedFileExtensions:  ['jpg', 'png'],
+            allowedFileExtensions:  ['jpg', 'png','ico','jpeg'],
             uploadUrl: "/uploadPic",
         });
+        //异步上传返回结果处理
+        $('#fileInputId').on('fileerror', function(event, data, msg) {
+            console.log("fileerror");
+            console.log(data);
+        });
+        //异步上传返回结果处理
+        $("#fileInputId").on("fileuploaded", function (event, data, previewId, index) {
+            console.log("fileuploaded");
+            var ref=$(this).attr("data-ref");
+           // $("input[name='"+ref+"']").val(data.response.url);
+
+        });
+
+        //同步上传错误处理
+        $('#fileInputId').on('filebatchuploaderror', function(event, data, msg) {
+            console.log("filebatchuploaderror");
+            console.log(data);
+        });
+
+        //同步上传返回结果处理
+        $("#fileInputId").on("filebatchuploadsuccess", function (event, data, previewId, index) {
+            console.log("filebatchuploadsuccess");
+            console.log(data);
+            console.log((data.response.url));
+            $("#picUrlPath").val(data.response.url);
+            console.log($("#picUrlPath").val());
+        });
+
+        //上传前
+        $('#fileInputId').on('filepreupload', function(event, data, previewId, index) {
+            console.log("filepreupload");
+        });
     });
+
+    $("#addActiveBtn").click(function(){
+        {
+            var param = $("#classInfo").serialize();
+            var submitUrl = "http://localhost:8080/active_add?"+param;
+            console.log(submitUrl);
+            htmlobj=$.ajax({url:submitUrl,async:false});
+            $("#model_info").html(htmlobj.responseText);
+        }
+    });
+    function  test() {
+        window.location.reload();
+    }
+
 </script>
 </body>
 </html>
