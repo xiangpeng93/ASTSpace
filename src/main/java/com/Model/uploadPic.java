@@ -8,12 +8,13 @@ import java.io.*;
 import java.util.List;
 import javax.servlet.*;
 import javax.servlet.http.*;
+
 /**
  * Created by xiangpeng on 2017/8/18.
  */
 public class uploadPic  extends  HttpServlet{
 
-    public String SaveByPath(String path,HttpServletRequest request)
+    public String SaveByPath(String pathReal,HttpServletRequest request)
     {
 
         //获得磁盘文件条目工厂
@@ -25,6 +26,8 @@ public class uploadPic  extends  HttpServlet{
          * 按理来说 当上传一个文件时，其实是上传了两份，第一个是以 .tem 格式的
          * 然后再将其真正写到 对应目录的硬盘上
          */
+        String path = request.getRealPath(pathReal);
+        System.out.println(path);
         factory.setRepository(new File(path));
         //设置 缓存的大小，当上传文件的容量超过该缓存时，直接放到 暂时存储室
         factory.setSizeThreshold(1024*1024) ;
@@ -104,6 +107,8 @@ public class uploadPic  extends  HttpServlet{
 
             e.printStackTrace();
         }
+
+
         return  filename;
     }
     public void doPost(HttpServletRequest request,
@@ -116,8 +121,8 @@ public class uploadPic  extends  HttpServlet{
 
         //获取文件需要上传到的路径
         PrintWriter out = response.getWriter();
-        out.println(String.format("{ \"url\": \"upload/%s\"}",SaveByPath("./upload",request)));
-        SaveByPath("../upload",request);
+        out.println(String.format("{ \"url\": \"uploadImgLogo/%s\"}",SaveByPath("/uploadImgLogo",request)));
+        SaveByPath("../uploadImgLogo",request);
     }
 
 }

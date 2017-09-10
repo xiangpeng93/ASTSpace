@@ -79,7 +79,14 @@ public class active_query extends HttpServlet {
                                 "</td>\n" +
                                 "<td>\n" +
                                 "%s\n" +
-                                "</td> </tr>\n",
+                                "</td> " +
+                                "<td>\n" +
+                                "<button class=\"btn btn-primary\" onclick=\"modifyInfo()\">修改</button>\n" +
+                                "</td> " +
+                                "<td>\n" +
+                                "<button class=\"btn btn-primary\" onclick=\"deleteInfo()\">删除</button>\n" +
+                                "</td> " +
+                                "</tr>\n",
                         result.getString("active_name"),
                         result.getString("active_cost"),
                         result.getString("active_time"),

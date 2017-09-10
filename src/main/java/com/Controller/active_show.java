@@ -58,16 +58,16 @@ public class active_show extends HttpServlet {
                                 "            <img src=\"%s\" class=\"img-responsive center-block\"/>\n" +
                                 "        <hr>\n" +
                                 "        <div class=\"container\">\n" +
-                                "            <p> <b>收费信息：<br/></b>材料收费：100元</p>\n" +
+                                "            <p> <b>收费信息：<br/></b>%s</p>\n" +
                                 "        </div>\n" +
                                 "        <div class=\"container\">\n" +
-                                "            <p> <b>活动时间：<br/> </b>9月11号</p>\n" +
+                                "            <p> <b>活动时间：<br/> </b>%s</p>\n" +
                                 "        </div>\n" +
                                 "        <div class=\"container\">\n" +
-                                "            <p> <b>活动简介：<br/></b>本次课程主要是测试使用</p>\n" +
+                                "            <p> <b>活动简介：<br/></b>%s</p>\n" +
                                 "        </div>\n" +
                                 "        <div class=\"container\">\n" +
-                                "            <p> <b>活动负责老师：<br/></b>xp</p>\n" +
+                                "            <p> <b>活动负责老师：<br/></b>%s</p>\n" +
                                 "        </div>\n" +
                                 "        <div class=\"container\">\n" +
                                 "            <button class=\"btn btn-primary pull-right\" data-toggle=\"modal\" data-target=\"#active_modal\" >我要报名</button>\n" +

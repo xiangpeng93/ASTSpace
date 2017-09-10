@@ -12,7 +12,7 @@ active_modify_time varchar(255),
 recv1 varchar(1024),
 recv2 varchar(1024),
 primary key(id)
-);
+)DEFAULT CHARSET=utf8;
 
 insert into active_info (
 active_name,active_cost,

@@ -1,4 +1,6 @@
 package com.Controller;
+import org.apache.commons.lang3.ObjectUtils;
+
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -64,7 +66,6 @@ public class active_add extends HttpServlet {
                     request.getParameter("active_msg"),
                     request.getParameter("active_teacher"),
                     request.getParameter("active_pic"),
-
                     dateNow.toString());
 
             System.out.println(insertSql);
@@ -94,9 +95,11 @@ public class active_add extends HttpServlet {
                stmt.executeUpdate(update_request_url);
                 if(result != 0) {
                     System.out.println("更新数据成功");
+                    break;
                 }
             }
-            rs.close();
+            if(rs != null)
+                rs.close();
             stmt.close();
             conn.close();
         } catch(SQLException se) {
