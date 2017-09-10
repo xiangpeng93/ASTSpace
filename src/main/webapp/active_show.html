@@ -50,7 +50,7 @@
 </nav>
 
 <div name="bodyForAdd">
-    <div class="container-fluid">
+    <div class="container-fluid" id="showActiveDiv">
         <h1 class="text-center" id="active_name" name="test_active">活动主题--</h1>
         <hr>
             <img src="img/bio-screen.jpg" class="img-responsive center-block"/>
@@ -128,7 +128,7 @@
     function  loadPage() {
             var url = window.location.search;
             var param = url.substring(url.lastIndexOf('=')+1, url.length);
-            var submitUrl = "http://astspace.org/"+param;
+            var submitUrl = "http://astspace.org/active_show?id="+param;
             htmlobj=$.ajax({url:submitUrl,async:false});
             $("#showActiveDiv").html(htmlobj.responseText);
     };
@@ -152,7 +152,6 @@
             {
                 var param = $("#form_active").serialize();
                 var submitUrl = "http://astspace.org/kc_bm?"+param+"&className="+classNameVal;
-                Console.write(submitUrl);
                 htmlobj=$.ajax({url:submitUrl,async:false});
                 $("#form_data").html(htmlobj.responseText);
             }

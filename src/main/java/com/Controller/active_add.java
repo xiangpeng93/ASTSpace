@@ -57,7 +57,6 @@ public class active_add extends HttpServlet {
                             "'%s',\n" +
                             "'%s',\n" +
                             "'%s'\n" +
-                            "'%s'\n" +
                     ");",
                     request.getParameter("active_name"),
                     request.getParameter("active_cost"),
@@ -65,6 +64,7 @@ public class active_add extends HttpServlet {
                     request.getParameter("active_msg"),
                     request.getParameter("active_teacher"),
                     request.getParameter("active_pic"),
+
                     dateNow.toString());
 
             System.out.println(insertSql);
@@ -82,20 +82,21 @@ public class active_add extends HttpServlet {
 
             String querySql;
             querySql = String.format(
-                    "select id from active_info where active_info='%s' and active_modify_time='%s';",request.getParameter("active_name"),dateNow.toString());
+                    "select id from active_info where active_name='%s' and active_modify_time='%s';",request.getParameter("active_name"),dateNow.toString());
 
             System.out.println(querySql);
             //执行并得到结果
             ResultSet rs = stmt.executeQuery(querySql);
             while (rs.next()) {
                int id = rs.getInt("id");
-               String update_request_url = String.format("update active_info set active_request_rul='%s' where id=%d","http://astspace.org/active_show?id="+id,id);
+               String update_request_url = String.format("update active_info set active_request_url='%s' where id=%d","http://astspace.org/active_show.html?id="+id,id);
                System.out.println(update_request_url);
                stmt.executeUpdate(update_request_url);
                 if(result != 0) {
                     System.out.println("更新数据成功");
                 }
             }
+            rs.close();
             stmt.close();
             conn.close();
         } catch(SQLException se) {

@@ -21,7 +21,9 @@ public class ScratchBase  extends  HttpServlet{
                 "                <h3>魔抓传奇-猫咪寻宝之旅</h3>\n" +
                 "                </a>\n" +
                 "                <p><ul>\n" +
-                "<li>开课时间暂定为9月16日。</li>\n" +
+                "<li>开课时间暂定为9月16日,每周日9：30-11：00 上课地点暂定为省科技馆,二楼月球内</li>\n" +
+                "<li>课程收费800元</li>\n" +
+                "<li><b>课程介绍</b></li>\n" +
                 "<li>初遇公主：Scratch入门，了解编程环境、积木块的概念和创建程序的方法</li>\n" +
                 "<li>保卫西瓜：数字与逻辑运算、随机数、侦测、添加声音</li>\n" +
                 "<li>搜集钱袋：动作与画笔模块的积木、图章使用绘制几何图形、计时器</li>\n" +
@@ -32,14 +34,14 @@ public class ScratchBase  extends  HttpServlet{
                 "<li>森林大战：综合运用</li>\n"+
                 "</ul>" +
                 "</p>\n" +
-                "                <p>\n" +
-                "                    <!-- Button trigger modal -->\n" +
-                "                    <button type=\"button\" class=\"btn btn-primary btn-lg\" data-toggle=\"modal\" data-target=\"#myModal\">\n" +
-                "                        报名入口\n" +
-                "                    </button>\n" +
-                "                </p>\n" +
-                "            </div>\n" +
-                "        </div>";
+                "<p>\n" +
+                "<!-- Button trigger modal -->\n" +
+                "<button type=\"button\" class=\"btn btn-primary btn-lg\" data-toggle=\"modal\" data-target=\"#myModal\">\n" +
+                "报名入口\n" +
+                "</button>\n" +
+                "</p>\n" +
+                "</div>\n" +
+                "</div>";
         // 实际的逻辑是在这里
         PrintWriter out = response.getWriter();
         out.println(responseMsg);

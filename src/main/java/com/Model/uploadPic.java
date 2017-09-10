@@ -4,29 +4,20 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import javax.servlet.*;
+import javax.servlet.http.*;
 /**
  * Created by xiangpeng on 2017/8/18.
  */
 public class uploadPic  extends  HttpServlet{
-    public void doPost(HttpServletRequest request,
-                      HttpServletResponse response)
-            throws ServletException, IOException{
-        request.setCharacterEncoding("utf-8");  //设置编码
-        response.setContentType("text/html;charset=utf-8");
-        response.setCharacterEncoding("utf-8");
+
+    public String SaveByPath(String path,HttpServletRequest request)
+    {
+
         //获得磁盘文件条目工厂
         DiskFileItemFactory factory = new DiskFileItemFactory();
-        //获取文件需要上传到的路径
-        String path = request.getRealPath("/upload");
-        String fileName = "";
         //如果没以下两行设置的话，上传大的 文件 会占用 很多内存，
         //设置暂时存放的 存储室 , 这个存储室，可以和 最终存储文件 的目录不同
         /**
@@ -41,7 +32,7 @@ public class uploadPic  extends  HttpServlet{
         //高水平的API文件上传处理
         ServletFileUpload upload = new ServletFileUpload(factory);
 
-
+        String filename = "";
         try {
             //可以上传多个文件
             List<FileItem> list = (List<FileItem>)upload.parseRequest(request);
@@ -70,7 +61,7 @@ public class uploadPic  extends  HttpServlet{
                     //索引到最后一个反斜杠
                     int start = value.lastIndexOf("\\");
                     //截取 上传文件的 字符串名字，加1是 去掉反斜杠，
-                    String filename = value.substring(start+1);
+                    filename = value.substring(start+1);
 
                     request.setAttribute(name, filename);
 
@@ -87,8 +78,8 @@ public class uploadPic  extends  HttpServlet{
                     int length = 0 ;
                     byte [] buf = new byte[1024] ;
 
-                    System.out.println("获取上传文件的总共的容量："+item.getSize() + " 文件名称"+filename);
-                    fileName = filename;
+                    System.out.println("获取上传文件的总共的容量："+item.getSize());
+
                     // in.read(buf) 每次读到的数据存放在   buf 数组中
                     while( (length = in.read(buf) ) != -1)
                     {
@@ -113,12 +104,20 @@ public class uploadPic  extends  HttpServlet{
 
             e.printStackTrace();
         }
+        return  filename;
+    }
+    public void doPost(HttpServletRequest request,
+                      HttpServletResponse response)
+            throws ServletException, IOException{
+        request.setCharacterEncoding("utf-8");
+        response.setContentType("text/html;charset=utf-8");
+        response.setCharacterEncoding("utf-8");
+        response.setHeader("Access-Control-Allow-Origin", "http://astsapce.org>");
 
-
-        //将新图片名称返回到前端
+        //获取文件需要上传到的路径
         PrintWriter out = response.getWriter();
-        String responseMsg = String.format("{ \"%s\" :\"%s\"}","url",fileName.toString());
-        out.println(responseMsg.toString());
+        out.println(String.format("{ \"url\": \"upload/%s\"}",SaveByPath("./upload",request)));
+        SaveByPath("../upload",request);
     }
 
 }

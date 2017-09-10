@@ -91,6 +91,7 @@ public class active_query extends HttpServlet {
                 );
                 ResponseMsg += responseDatabaseMsg;
             }
+            result.close();
             out.println(ResponseMsg);
             stmt.close();
             conn.close();

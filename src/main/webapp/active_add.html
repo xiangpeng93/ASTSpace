@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1, user-scalable=no"/>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -135,7 +135,6 @@
             {
                 var param = $("#form_dianzi").serialize();
                 var submitUrl = "http://astspace.org/kc_bm?"+param+"&className="+classNameVal;
-                Console.write(submitUrl);
                 htmlobj=$.ajax({url:submitUrl,async:false});
                 $("#form_data").html(htmlobj.responseText);
 

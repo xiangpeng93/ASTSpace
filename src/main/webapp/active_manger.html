@@ -276,7 +276,7 @@
     $("#addActiveBtn").click(function(){
         {
             var param = $("#classInfo").serialize();
-            var submitUrl = "http://localhost:8080/active_add?"+param;
+            var submitUrl = "http://astspace.org/active_add?"+param;
             console.log(submitUrl);
             htmlobj=$.ajax({url:submitUrl,async:false});
             $("#model_info").html(htmlobj.responseText);
@@ -287,7 +287,7 @@
     }
     
     function  loadPage() {
-        var submitUrl = "http://localhost:8080/active_query";
+        var submitUrl = "http://astspace.org/active_query";
         console.log(submitUrl);
         htmlobj=$.ajax({url:submitUrl,async:false});
         $("#active_info_body").html(htmlobj.responseText);

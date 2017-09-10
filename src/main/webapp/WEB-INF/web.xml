@@ -82,6 +82,17 @@
     <servlet-name>active_query</servlet-name>
     <url-pattern>/active_query</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <servlet-name>active_show</servlet-name>
+    <servlet-class>com.Controller.active_show</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>active_show</servlet-name>
+    <url-pattern>/active_show</url-pattern>
+  </servlet-mapping>
+
   <servlet>
     <servlet-name>active_delete</servlet-name>
     <servlet-class>com.Controller.active_delete</servlet-class>

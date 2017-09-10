@@ -21,7 +21,7 @@ public class kc_bm extends HttpServlet {
     public void init() throws ServletException
     {
         // 执行必需的初始化
-        message = "报名成功，工作人员确认后会有短信通知。";
+        message = "报名成功，请与1小时内联系工作人员并完成缴费。";
     }
 
     public void doGet(HttpServletRequest request,
@@ -37,7 +37,6 @@ public class kc_bm extends HttpServlet {
         // 实际的逻辑是在这里
         PrintWriter out = response.getWriter();
 
-        System.out.println(responseMsg);
 
         Connection conn = null;
         Statement stmt = null;
@@ -100,6 +99,15 @@ public class kc_bm extends HttpServlet {
             }
             if(!bHaveData)
             {
+                if(request.getParameter("className").equals("Arduino 入门") ||
+                        request.getParameter("className").equals("Scratch:猫咪寻宝之旅"))
+                {
+                    responseMsg+="<div><img  class=\"img-responsive center-block\"   src=\"img/yjm.jpeg\" ></img></div>";
+                }
+                else if(request.getParameter("className").equals("生物黑客之小鸡孵化") )
+                {
+                    responseMsg+="<div><img  class=\"img-responsive center-block\"  src=\"img/hxx.jpeg\" ></img></div>";
+                }
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
                 String dateNow = df.format(new Date());
                 System.out.println(dateNow);// new Date()为获取当前系统时间
@@ -140,7 +148,7 @@ public class kc_bm extends HttpServlet {
                 se.printStackTrace();
             }
         }
-
+        System.out.println(responseMsg);
     }
 
     public void destroy()

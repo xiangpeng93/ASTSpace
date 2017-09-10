@@ -1,6 +1,7 @@
 package com.Controller;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -12,7 +13,7 @@ import java.util.Date;
 /**
  * Created by Administrator on 2017/9/9 0009.
  */
-public class active_show {
+public class active_show extends HttpServlet {
     // JDBC 驱动名及数据库 URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     static final String DB_URL = "jdbc:mysql://localhost:3306/astspace";
@@ -81,6 +82,7 @@ public class active_show {
                 );
                 ResponseMsg += responseDatabaseMsg;
             }
+            result.close();
             out.println(ResponseMsg);
             stmt.close();
             conn.close();
