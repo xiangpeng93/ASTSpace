@@ -78,7 +78,7 @@ public class active_query extends HttpServlet {
                                 "%s\n" +
                                 "</td>\n" +
                                 "<td>\n" +
-                                "%s\n" +
+                                "<a href=\"%s\">%s</a>\n" +
                                 "</td> " +
                                 "<td>\n" +
                                 "<button class=\"btn btn-primary\" onclick=\"modifyInfo()\">修改</button>\n" +
@@ -94,6 +94,7 @@ public class active_query extends HttpServlet {
                         result.getString("active_teacher"),
                         result.getString("active_pic"),
                         result.getString("active_request_url"),
+                        "active_list.html?className="+result.getString("active_name"),
                         result.getString("active_student_num")
                 );
                 ResponseMsg += responseDatabaseMsg;
