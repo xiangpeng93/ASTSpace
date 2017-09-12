@@ -81,10 +81,10 @@ public class active_query extends HttpServlet {
                                 "<a href=\"%s\">%s</a>\n" +
                                 "</td> " +
                                 "<td>\n" +
-                                "<button class=\"btn btn-primary\" onclick=\"modifyInfo()\">修改</button>\n" +
+                                "<button class=\"btn btn-primary\" onclick=\"modifyInfo(this)\">修改</button>\n" +
                                 "</td> " +
                                 "<td>\n" +
-                                "<button class=\"btn btn-primary\" onclick=\"deleteInfo()\">删除</button>\n" +
+                                "<button class=\"btn btn-primary\" onclick=\"deleteInfo(this)\">删除</button>\n" +
                                 "</td> " +
                                 "</tr>\n",
                         result.getString("active_name"),

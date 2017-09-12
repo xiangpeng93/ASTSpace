@@ -121,7 +121,7 @@ public class uploadPic  extends  HttpServlet{
 
         //获取文件需要上传到的路径
         PrintWriter out = response.getWriter();
-        out.println(String.format("{ \"url\": \"uploadImgLogo/%s\"}",SaveByPath("/uploadImgLogo",request)));
+        out.println(String.format("{ \"url\": \"%s\"}",SaveByPath("/uploadImgLogo",request)));
         SaveByPath("../uploadImgLogo",request);
     }
 

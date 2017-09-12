@@ -55,7 +55,7 @@ public class active_show extends HttpServlet {
                 String responseDatabaseMsg;
                 responseDatabaseMsg = String.format("<h1 class=\"text-center\" id=\"active_name\" name=\"%s\">%s</h1>\n" +
                                 "        <hr>\n" +
-                                "            <img src=\"%s\" class=\"img-responsive center-block\"/>\n" +
+                                "            <img src=\"uploadImgLogo\\%s\" class=\"img-responsive center-block\"/>\n" +
                                 "        <hr>\n" +
                                 "        <div class=\"container\">\n" +
                                 "            <p> <b>收费信息：<br/></b>%s</p>\n" +

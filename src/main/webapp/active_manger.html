@@ -89,35 +89,7 @@
                             </tr>
                             </thead>
                             <tbody id="active_info_body">
-                            <tr>
-                                <td>
-                                    1
-                                </td>
-                                <td>
-                                    2
-                                </td>
-                                <td>
-3
-                                </td>
-                                <td>
-4
-                                </td>
-                                <td>
-5
-                                </td>
-                                <td>
-6
 
-                                </td>
-                                <td>
-7
-                                </td>
-                                <td>
-                                    8
-                                    </td>
-                                <td>
-                                    <button class=btn btn-primary id="modifyInfo">修改</button>
-                                </td> <td><button class="btn btn-primar" id="deleteInfo">删除</button></td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -143,31 +115,31 @@
                     <form class="bs-example bs-example-form " id="classInfo" role="form">
                         <div class="input-group">
                             <span class="input-group-addon">活动名称：</span>
-                            <input name="active_name" type="text" class="form-control" placeholder="请输入课程名称">
+                            <input  id="active_name" name="active_name" type="text" class="form-control" placeholder="请输入课程名称">
                         </div>
                         <br>
 
                         <div class="input-group">
                             <span class="input-group-addon">收费信息：</span>
-                            <input name="active_cost" type="text" class="form-control" placeholder="请输入收费信息">
+                            <input id="active_cost" name="active_cost" type="text" class="form-control" placeholder="请输入收费信息">
                         </div>
                         <br>
 
                         <div class="input-group">
                             <span class="input-group-addon">开课时间：</span>
-                            <input name="active_time" type="text" class="form-control" placeholder="请输入开课时间">
+                            <input id="active_time" name="active_time" type="text" class="form-control" placeholder="请输入开课时间">
                         </div>
                         <br>
 
                         <div class="input-group">
                             <span class="input-group-addon">课程介绍：</span>
-                            <input name="active_msg" type="text" class="form-control text-justify" placeholder="请输入课程简短介绍"/>
+                            <input id="active_msg" name="active_msg" type="text" class="form-control text-justify" placeholder="请输入课程简短介绍"/>
                         </div>
                         <br>
 
                         <div class="input-group">
                             <span class="input-group-addon">授课老师：</span>
-                            <input name="active_teacher" type="text" class="form-control text-justify" placeholder="请输入授课老师"/>
+                            <input id="active_teacher" name="active_teacher" type="text" class="form-control text-justify" placeholder="请输入授课老师"/>
                         </div>
                         <br>
 
@@ -213,6 +185,10 @@
 <script src="js/locales/zh.js"></script>
 
 <script>
+
+    var active_name;
+    var active_cost;
+    var active_time;
     $(document).on('ready', function() {
         $("#fileInputId").fileinput({
             uploadAsync: false, //默认异步上传
@@ -264,15 +240,7 @@
         });
     });
 
-    $("#addActiveBtn").click(function(){
-        {
-            var param = $("#classInfo").serialize();
-            var submitUrl = "http://astspace.org/active_add?"+param;
-            console.log(submitUrl);
-            htmlobj=$.ajax({url:submitUrl,async:false});
-            $("#model_info").html(htmlobj.responseText);
-        }
-    });
+
     function  test() {
         window.location.reload();
     }
@@ -282,18 +250,61 @@
         console.log(submitUrl);
         htmlobj=$.ajax({url:submitUrl,async:false});
         $("#active_info_body").html(htmlobj.responseText);
+        active_name = "";
     }
 
-    $("table td button").click(function()
+    function modifyInfo(a)
     {
-        var row = $(this).parent().index() + 1; // 行位置
-        var col = $(this).index() + 1; // 列位置
-        alert("当前位置：第"+row+"行，第"+col+"列");
-        var id=$.trim($(this).parent().parent().children("td").get(0).innerHTML);
-        var name=$.trim($(this).parent().parent().children("td").get(1).innerHTML);
-        var age=$.trim($(this).parent().parent().children("td").get(2).innerHTML);
-        alert("id="+id+" name="+name+" age="+age);
-        alert( this.id);
+        var name=$.trim($(a).parent().parent().children("td").get(0).innerHTML);
+        var cost=$.trim($(a).parent().parent().children("td").get(1).innerHTML);
+        var time=$.trim($(a).parent().parent().children("td").get(2).innerHTML);
+        var msg=$.trim($(a).parent().parent().children("td").get(3).innerHTML);
+        var teacher=$.trim($(a).parent().parent().children("td").get(4).innerHTML);
+        var picUrl=$.trim($(a).parent().parent().children("td").get(5).innerHTML);
+        active_name = name;
+        active_cost = cost;
+        active_time = time;
+        $('#active_name').val(name);
+        $('#active_cost').val(cost);
+        $('#active_time').val(time);
+        $('#active_msg').val(msg);
+        $('#active_teacher').val(teacher);
+        $('#picUrlPath').val(picUrl);
+        $('#addClassModle').modal('show');
+    };
+    function  deleteInfo(a) {
+        var name=$.trim($(a).parent().parent().children("td").get(0).innerHTML);
+        var cost=$.trim($(a).parent().parent().children("td").get(1).innerHTML);
+        var time=$.trim($(a).parent().parent().children("td").get(2).innerHTML);
+        var msg=$.trim($(a).parent().parent().children("td").get(3).innerHTML);
+        var teacher=$.trim($(a).parent().parent().children("td").get(4).innerHTML);
+        var picUrl=$.trim($(a).parent().parent().children("td").get(5).innerHTML);
+
+        var submitUrl = "http://astspace.org/" + "active_delete" + "?active_name="+name+"&active_cost="+cost+"&active_time="+time+"&active_msg="+msg+"&active_teacher="+teacher+"&active_pic="+picUrl;
+        console.log( submitUrl);
+        htmlobj=$.ajax({url:submitUrl,async:false});
+        $("#model_info").html(htmlobj.responseText);
+        test();
+    }
+
+    $("#addActiveBtn").click(function(){
+        {
+            var submitUrl = "http://astspace.org/active_add?";
+            var param = $("#classInfo").serialize();
+            if(active_name !== "")
+            {
+                submitUrl += "active_name_before="+active_name+"&active_cost_before="+active_cost+"&active_time_before="+active_time+"&"+param;
+                //alert( submitUrl);
+            }
+            else
+            {
+                submitUrl += param;
+                //alert( submitUrl);
+            }
+
+            htmlobj=$.ajax({url:submitUrl,async:false});
+            $("#model_info").html(htmlobj.responseText);
+        }
     });
 
 </script>

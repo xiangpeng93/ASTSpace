@@ -47,16 +47,16 @@ public class active_delete extends HttpServlet {
             String deleteSql;
             deleteSql = String.format("delete from active_info where active_name='%s' \n" +
                             " and active_cost='%s' \n" +
-                            " and active_modify_time='%s' \n" +
+                            " and active_time='%s' \n" +
                             " and active_msg='%s' \n" +
                             " and active_teacher='%s' \n" +
                             " and active_pic='%s';",
-                    request.getParameter("active_name"),
-                    request.getParameter("active_cost"),
-                    request.getParameter("active_time"),
-                    request.getParameter("active_msg"),
-                    request.getParameter("active_teacher"),
-                    request.getParameter("active_pic"));
+                    request.getParameter("active_name").toString(),
+                    request.getParameter("active_cost").toString(),
+                    request.getParameter("active_time").toString(),
+                    request.getParameter("active_msg").toString(),
+                    request.getParameter("active_teacher").toString(),
+                    request.getParameter("active_pic").toString());
 
             System.out.println(deleteSql);
             //执行并得到结果

@@ -44,47 +44,80 @@ public class active_add extends HttpServlet {
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
             String dateNow = df.format(new Date());
 
-            String insertSql;
-            insertSql = String.format(
-                            "insert into active_info (\n" +
-                            "active_name,active_cost,\n" +
-                            "active_time,active_msg,\n" +
-                            "active_teacher,active_pic,\n" +
-                            "active_modify_time\n" +
-                            ") values(\n" +
-                            "'%s',\n" +
-                            "'%s',\n" +
-                            "'%s',\n" +
-                            "'%s',\n" +
-                            "'%s',\n" +
-                            "'%s',\n" +
-                            "'%s'\n" +
-                    ");",
-                    request.getParameter("active_name"),
-                    request.getParameter("active_cost"),
-                    request.getParameter("active_time"),
-                    request.getParameter("active_msg"),
-                    request.getParameter("active_teacher"),
-                    request.getParameter("active_pic"),
-                    dateNow.toString());
+            String active_name_before = request.getParameter("active_name_before");
+            System.out.println(active_name_before);
 
-            System.out.println(insertSql);
-            //执行并得到结果
-            int result = stmt.executeUpdate(insertSql);
-            System.out.println(result);
-            if(result != 0)
+            if(active_name_before == null)
             {
-                out.println("<br> <p class=\"container\"> 活动添加成功。</p> <br> " +
-                        "<div class=\"modal-footer\">\n" +
-                        "                        <button type=\"button\" id=\"submit_dianzi\" data-dismiss=\"modal\" class=\"btn btn-primary\"  onclick=\"test()\">完成</button>\n" +
-                        "                    </div>");
+                String insertSql;
+                insertSql = String.format(
+                        "insert into active_info (\n" +
+                                "active_name,active_cost,\n" +
+                                "active_time,active_msg,\n" +
+                                "active_teacher,active_pic,\n" +
+                                "active_modify_time\n" +
+                                ") values(\n" +
+                                "'%s',\n" +
+                                "'%s',\n" +
+                                "'%s',\n" +
+                                "'%s',\n" +
+                                "'%s',\n" +
+                                "'%s',\n" +
+                                "'%s'\n" +
+                                ");",
+                        request.getParameter("active_name"),
+                        request.getParameter("active_cost"),
+                        request.getParameter("active_time"),
+                        request.getParameter("active_msg"),
+                        request.getParameter("active_teacher"),
+                        request.getParameter("active_pic"),
+                        dateNow.toString());
 
+                System.out.println(insertSql);
+                //执行并得到结果
+                int result = stmt.executeUpdate(insertSql);
+                System.out.println(result);
+                if(result != 0)
+                {
+                    out.println("<br> <p class=\"container\"> 活动添加成功。</p> <br> " +
+                            "<div class=\"modal-footer\">\n" +
+                            "                        <button type=\"button\" id=\"submit_dianzi\" data-dismiss=\"modal\" class=\"btn btn-primary\"  onclick=\"test()\">完成</button>\n" +
+                            "                    </div>");
+
+                }
+            }
+            else {
+                String updateSql = String.format("update active_info set active_name='%s',active_cost='%s',active_time='%s'," +
+                                "active_msg='%s',active_teacher='%s',active_pic='%s',active_modify_time='%s' where " +
+                                "active_name='%s' and active_cost='%s' and active_time='%s'",
+                        request.getParameter("active_name"),
+                        request.getParameter("active_cost"),
+                        request.getParameter("active_time"),
+                        request.getParameter("active_msg"),
+                        request.getParameter("active_teacher"),
+                        request.getParameter("active_pic"),
+                        dateNow.toString(),
+                        request.getParameter("active_name_before"),
+                        request.getParameter("active_cost_before"),
+                        request.getParameter("active_time_before")
+                );
+                //执行并得到结果
+                int result = stmt.executeUpdate(updateSql);
+                System.out.println(updateSql);
+                if(result != 0)
+                {
+                    out.println("<br> <p class=\"container\"> 活动更新成功。</p> <br> " +
+                            "<div class=\"modal-footer\">\n" +
+                            "                        <button type=\"button\" id=\"submit_dianzi\" data-dismiss=\"modal\" class=\"btn btn-primary\"  onclick=\"test()\">完成</button>\n" +
+                            "                    </div>");
+
+                }
             }
 
             String querySql;
             querySql = String.format(
                     "select id from active_info where active_name='%s' and active_modify_time='%s';",request.getParameter("active_name"),dateNow.toString());
-
+            int result = 0;
             System.out.println(querySql);
             //执行并得到结果
             ResultSet rs = stmt.executeQuery(querySql);
@@ -97,6 +130,7 @@ public class active_add extends HttpServlet {
                     System.out.println("更新数据成功");
                     break;
                 }
+                break;
             }
             if(rs != null)
                 rs.close();

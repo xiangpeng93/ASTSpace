@@ -21,7 +21,7 @@ public class kc_bm extends HttpServlet {
     public void init() throws ServletException
     {
         // 执行必需的初始化
-        message = "报名成功，请与1小时内联系工作人员并完成缴费。";
+        message = "恭喜，报名成功，请准时参加活动，若有问题，请联系工作人员，长按图片进行咨询。";
     }
 
     public void doGet(HttpServletRequest request,
@@ -107,6 +107,10 @@ public class kc_bm extends HttpServlet {
                 else if(request.getParameter("className").equals("生物黑客之小鸡孵化") )
                 {
                     responseMsg+="<div><img  class=\"img-responsive center-block\"  src=\"img/hxx.jpeg\" ></img></div>";
+                }
+                else
+                {
+                    responseMsg+="<div><img  class=\"img-responsive center-block\"   src=\"img/yjm.jpeg\" ></img></div>";
                 }
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
                 String dateNow = df.format(new Date());
