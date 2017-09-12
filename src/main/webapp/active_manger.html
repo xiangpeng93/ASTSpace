@@ -89,7 +89,35 @@
                             </tr>
                             </thead>
                             <tbody id="active_info_body">
+                            <tr>
+                                <td>
+                                    1
+                                </td>
+                                <td>
+                                    2
+                                </td>
+                                <td>
+3
+                                </td>
+                                <td>
+4
+                                </td>
+                                <td>
+5
+                                </td>
+                                <td>
+6
 
+                                </td>
+                                <td>
+7
+                                </td>
+                                <td>
+                                    8
+                                    </td>
+                                <td>
+                                    <button class=btn btn-primary id="modifyInfo">修改</button>
+                                </td> <td><button class="btn btn-primar" id="deleteInfo">删除</button></td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -255,6 +283,18 @@
         htmlobj=$.ajax({url:submitUrl,async:false});
         $("#active_info_body").html(htmlobj.responseText);
     }
+
+    $("table td button").click(function()
+    {
+        var row = $(this).parent().index() + 1; // 行位置
+        var col = $(this).index() + 1; // 列位置
+        alert("当前位置：第"+row+"行，第"+col+"列");
+        var id=$.trim($(this).parent().parent().children("td").get(0).innerHTML);
+        var name=$.trim($(this).parent().parent().children("td").get(1).innerHTML);
+        var age=$.trim($(this).parent().parent().children("td").get(2).innerHTML);
+        alert("id="+id+" name="+name+" age="+age);
+        alert( this.id);
+    });
 
 </script>
 </body>
