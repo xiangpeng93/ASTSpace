@@ -14,7 +14,7 @@ import javax.servlet.http.*;
  */
 public class uploadPic  extends  HttpServlet{
 
-    public String SaveByPath(String pathReal,HttpServletRequest request)
+    public String SaveByPath(String pathReal,HttpServletRequest request,int i)
     {
 
         //获得磁盘文件条目工厂
@@ -27,6 +27,17 @@ public class uploadPic  extends  HttpServlet{
          * 然后再将其真正写到 对应目录的硬盘上
          */
         String path = request.getRealPath(pathReal);
+
+        String path2 = request.getRealPath(pathReal);
+
+        int status = path2.lastIndexOf("/");
+        //截取 上传文件的 字符串名字，加1是 去掉反斜杠，
+        path2 = path2.substring(0,status) ;
+        status = path2.lastIndexOf("/");
+        path2 = path2.substring(0,status) + pathReal;
+
+
+
         System.out.println(path);
         factory.setRepository(new File(path));
         //设置 缓存的大小，当上传文件的容量超过该缓存时，直接放到 暂时存储室
@@ -50,8 +61,9 @@ public class uploadPic  extends  HttpServlet{
                 {
                     //获取用户具体输入的字符串 ，名字起得挺好，因为表单提交过来的是 字符串类型的
                     String value = item.getString() ;
-
                     request.setAttribute(name, value);
+                    System.out.println("表单信息是普通的 文本 信息");
+
                 }
                 //对传入的非 简单的字符串进行处理 ，比如说二进制的 图片，电影这些
                 else
@@ -61,6 +73,7 @@ public class uploadPic  extends  HttpServlet{
                      */
                     //获取路径名
                     String value = item.getName() ;
+                    System.out.println(value);
                     //索引到最后一个反斜杠
                     int start = value.lastIndexOf("\\");
                     //截取 上传文件的 字符串名字，加1是 去掉反斜杠，
@@ -75,6 +88,7 @@ public class uploadPic  extends  HttpServlet{
 
                     //手动写的
                     OutputStream out = new FileOutputStream(new File(path,filename));
+                    OutputStream out2 = new FileOutputStream(new File(path2,filename));
 
                     InputStream in = item.getInputStream() ;
 
@@ -88,11 +102,12 @@ public class uploadPic  extends  HttpServlet{
                     {
                         //在   buf 数组中 取出数据 写到 （输出流）磁盘上
                         out.write(buf, 0, length);
-
+                        out2.write(buf, 0, length);
                     }
 
                     in.close();
                     out.close();
+                    out2.close();
                 }
             }
 
@@ -121,8 +136,7 @@ public class uploadPic  extends  HttpServlet{
 
         //获取文件需要上传到的路径
         PrintWriter out = response.getWriter();
-        out.println(String.format("{ \"url\": \"%s\"}",SaveByPath("/uploadImgLogo",request)));
-        SaveByPath("../uploadImgLogo",request);
+        out.println(String.format("{ \"url\": \"%s\"}",SaveByPath("/uploadImgLogo",request,0)));
     }
 
 }

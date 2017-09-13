@@ -65,6 +65,7 @@ public class kc_bm extends HttpServlet {
                 String strAgeNum = rs.getString("ageNum");
                 String strKcName = rs.getString("className");
 
+
                 // 输出数据
                 String responseDatabaseMsg;
                 responseDatabaseMsg = String.format("<table class=\"table table-striped table-bordered table-hover table-condensed\">\n" +
@@ -117,14 +118,44 @@ public class kc_bm extends HttpServlet {
                 System.out.println(dateNow);// new Date()为获取当前系统时间
 
                 String strClassName = request.getParameter("className").toString();
-                System.out.printf("%s\r\n,%s\r\n",request.getParameter("name").toString(),request.getParameter("phoneNum")).toString();
-                String insertSql = String.format("insert into kc_bm (userName,phoneNum,ageNum,className,time_bm) VALUES('%s','%s','%s','%s','%s');",request.getParameter("name").toString(),request.getParameter("phoneNum").toString(),request.getParameter("ageNum").toString(),strClassName.toString(),dateNow.toString());
+
+                String insertSql = String.format("insert into kc_bm (userName,phoneNum,ageNum,className,time_bm,chooseTime) VALUES('%s','%s','%s','%s','%s','%s')",
+                        request.getParameter("name").toString(),
+                        request.getParameter("phoneNum").toString(),
+                        request.getParameter("ageNum").toString(),
+                        strClassName.toString(),
+                        dateNow.toString(),
+                        request.getParameter("chooseTime").toString());
+                System.out.println(insertSql);
+
                 out.println(responseMsg + " <div class=\"modal-footer\">\n" +
                         "                        <button type=\"button\" id=\"submit_dianzi\" data-dismiss=\"modal\" class=\"btn btn-primary\">完成</button>\n" +
                         "                    </div>");
-                System.out.println(insertSql);
 
                 stmt.execute(insertSql);
+
+
+                String queryStudentNumSql = String.format("select active_student_num from active_info where active_name='%s';",strClassName.toString());
+                System.out.println(queryStudentNumSql);
+
+                ResultSet numRs =  stmt.executeQuery(queryStudentNumSql);
+
+                while(numRs.next()){
+                    String studentNum = numRs.getString("active_student_num");
+                    System.out.println(studentNum);
+
+                    int iStdentNum = 1;
+                    if(studentNum != null) {
+                        iStdentNum+= Integer.parseInt(studentNum);
+                    }
+                    String updateSql = String.format("update active_info set active_student_num='%d' where active_name='%s'",iStdentNum,strClassName.toString());
+                    System.out.println(updateSql);
+
+                    stmt.execute(updateSql);
+
+                    break;
+                }
+
             }
 
 

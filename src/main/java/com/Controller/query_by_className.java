@@ -45,11 +45,12 @@ public class query_by_className extends HttpServlet {
             // 执行 SQL 查询
             stmt = conn.createStatement();
             String querySql;
-            querySql = String.format("SELECT id, userName,ageNum, phoneNum,className FROM kc_bm where className='%s';",request.getParameter("className"));
+            querySql = String.format("SELECT id, userName,ageNum, phoneNum,className,chooseTime FROM kc_bm where className='%s';",request.getParameter("className"));
             System.out.println(querySql);
 
             ResultSet rs = stmt.executeQuery(querySql);
-            boolean bHaveData = false;
+            String responseDatabaseMsg  = "";
+
             // 展开结果集数据库
             while(rs.next()){
                 // 通过字段检索
@@ -59,32 +60,21 @@ public class query_by_className extends HttpServlet {
 
                 String strAgeNum = rs.getString("ageNum");
                 String strKcName = rs.getString("className");
+                String strChooseTime = rs.getString("chooseTime");
 
                 // 输出数据
-                String responseDatabaseMsg;
-                responseDatabaseMsg = String.format("<table class=\"table table-striped table-bordered table-hover table-condensed\">\n" +
-                        "\t\t<thead>\n" +
-                        "\t\t\t<tr>\n" +
-                        "\t\t\t\t<th>%s</th>\n" +
-                        "\t\t\t\t<th>%s</th>\n" +
-                        "\t\t\t\t<th>%s</th>\n" +
-                        "\t\t\t\t<th>%s</th>\n" +
-                        "\t\t\t</tr>\n" +
-                        "\t\t</thead>\n" +
-                        "\t\t<tbody>\n" +
+                responseDatabaseMsg += String.format(
                         "\t\t\t<tr>\n" +
                         "\t\t\t\t<td>%s</td>\n" +
                         "\t\t\t\t<td>%s</td>\n" +
                         "\t\t\t\t<td>%s</td>\n" +
-                        "\t\t\t\t<td>%s</td>\n" +
-                        "\t\t\t</tr>\n" +
-                        "\t\t</tbody>\n" +
-                        "\t</table>","姓名","电话号码","年龄","课程名称",strUserName,strPhoneNum,strAgeNum,strKcName);
-
-                out.println(responseDatabaseMsg);
-
+                                "<td>%s</td>\n" +
+                                "<td>%s</td>" +
+                        "</tr>\n",strUserName,strPhoneNum,strAgeNum,strKcName,strChooseTime);
                 System.out.println(responseDatabaseMsg);
             }
+            out.println(responseDatabaseMsg);
+
             // 完成后关闭
             rs.close();
             stmt.close();
